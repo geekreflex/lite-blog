@@ -1,10 +1,12 @@
 {
   "name": "lite-blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple, Minimalist MERN Blog",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run app\" \"npm run client\""
   },
   "repository": {
     "type": "git",

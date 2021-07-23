@@ -8,7 +8,7 @@ const registerUser = async (req, res) => {
   const userExists = await User.findOne({ email });
 
   if (userExists) {
-    return res.status(402).json({ message: "Email already registered" });
+    return res.status(422).json({ message: "Email already registered" });
   }
 
   const user = await User.create({
@@ -27,8 +27,19 @@ const registerUser = async (req, res) => {
   }
 };
 
-const loginUser = (req, res) => {
-  //
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(401).json({ message: "Invalid email or password" });
+  }
 };
 
 module.exports = { registerUser, loginUser };

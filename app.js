@@ -1,7 +1,7 @@
 require("dotenv").config();
 const path = require("path");
 const express = require("express");
-const cors = require(cors);
+const cors = require("cors");
 
 const userRoute = require("./routes/userRoute");
 const connectDB = require("./config/db");
@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use("/api/users", userRoute);
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
