@@ -20,11 +20,14 @@ const Register = () => {
   };
 
   return (
-    <main>
+    <div className="register-form form-field">
       <Error />
-      <div>
+      <div className="form-hd">
+        <h1>Create An Account</h1>
+      </div>
+      <div className="form-wrap">
         <form onSubmit={onSubmitRegister}>
-          <div>
+          <div className="form-control">
             <label>Full Name</label>
             <input
               placeholder="e.g. John Doe"
@@ -34,7 +37,7 @@ const Register = () => {
               required
             />
           </div>
-          <div>
+          <div className="form-control">
             <label>Email</label>
             <input
               placeholder="john@example.com"
@@ -44,7 +47,7 @@ const Register = () => {
               required
             />
           </div>
-          <div>
+          <div className="form-control">
             <label>Password</label>
             <input
               placeholder="@#ghsgshjh6"
@@ -54,17 +57,17 @@ const Register = () => {
               required
             />
           </div>
-          <div>
-            <button>Register</button>
+          <div className="form-btn-wrap">
+            <button className="btn">Register</button>
           </div>
-          <div>
+          <div className="form-info">
             <p>
               Already have an account ? <Link to="/login">Login</Link>
             </p>
           </div>
         </form>
       </div>
-    </main>
+    </div>
   );
 };
 

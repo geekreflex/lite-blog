@@ -19,11 +19,15 @@ const Login = () => {
   };
 
   return (
-    <main>
+    <div className="login-form form-field">
       <Error />
-      <div>
+      <div className="form-hd">
+        <h1>Welcome Back!</h1>
+        <p>We are delighted to have you back!</p>
+      </div>
+      <div className="form-wrap">
         <form onSubmit={onSubmitLogin}>
-          <div>
+          <div className="form-control">
             <label>Email</label>
             <input
               placeholder="Enter Email"
@@ -33,7 +37,7 @@ const Login = () => {
               required
             />
           </div>
-          <div>
+          <div className="form-control">
             <label>Password</label>
             <input
               placeholder="Enter Password"
@@ -43,17 +47,17 @@ const Login = () => {
               required
             />
           </div>
-          <div>
-            <button>Login</button>
+          <div className="form-btn-wrap">
+            <button className="btn">Login</button>
           </div>
-          <div>
+          <div className="form-info">
             <p>
               Don't have an account ? <Link to="/register">Register</Link>
             </p>
           </div>
         </form>
       </div>
-    </main>
+    </div>
   );
 };
 

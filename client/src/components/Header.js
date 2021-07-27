@@ -38,8 +38,12 @@ const Header = () => {
               </div>
             ) : (
               <div>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
+                <Link className="hd-link" to="/login">
+                  Login
+                </Link>
+                <Link className="btn" to="/register">
+                  Register
+                </Link>
               </div>
             )}
           </div>

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import token from "../../helper/authToken";
+import { BASE_URL } from "../../helper/baseUrl";
 
 const initialState = {
   post: {},
@@ -8,13 +8,13 @@ const initialState = {
   error: null,
 };
 
-const BASE_URL = "http://localhost:5000/api/posts";
+const url = `${BASE_URL()}/api/posts`;
 
 export const getPostById = createAsyncThunk(
   "posts/getPostById",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${BASE_URL}/${payload}`);
+      const { data } = await axios.get(`${url}/${payload}`);
 
       // console.log(data);
       return data;
@@ -35,6 +35,7 @@ export const postSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getPostById.pending]: (state, action) => {
+      state.post = {};
       state.status = "loading";
     },
     [getPostById.fulfilled]: (state, action) => {
@@ -47,5 +48,7 @@ export const postSlice = createSlice({
     },
   },
 });
+
+export const {} = postSlice.actions;
 
 export default postSlice.reducer;

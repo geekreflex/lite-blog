@@ -11,11 +11,9 @@ import Login from "./views/Login";
 import Home from "./views/Home";
 import NewPost from "./views/NewPost";
 import SinglePost from "./views/SinglePost";
-// import { useSelector } from "react-redux";
+import { PublicRoute, ProtectedRoute } from "./helper/authRoute";
 
 const App = () => {
-  // const isAuth = useSelector((state) => state.user.isAuthenticated);
-
   return (
     <Router>
       <div className="App">
@@ -23,8 +21,8 @@ const App = () => {
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+            <PublicRoute exact path="/login" component={Login} />
+            <PublicRoute exact path="/register" component={Register} />
             <Route exact path="/new" component={NewPost} />
             <Route exact path="/posts/:id" component={SinglePost} />
           </Switch>

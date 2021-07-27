@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import token from "../../helper/authToken";
 
+import { BASE_URL } from "../../helper/baseUrl";
+
 const initialState = {
   posts: [],
   post: {},
@@ -9,13 +11,13 @@ const initialState = {
   error: null,
 };
 
-const BASE_URL = "http://localhost:5000/api/posts";
+const url = `${BASE_URL()}/api/posts`;
 
 export const getPosts = createAsyncThunk(
   "posts/getPosts",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${BASE_URL}`);
+      const { data } = await axios.get(`${url}`);
 
       // console.log(data);
       return data;
@@ -40,7 +42,7 @@ export const createPost = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.post(`${BASE_URL}/`, payload, config);
+      const { data } = await axios.post(`${url}/`, payload, config);
 
       // console.log(data);
     } catch (error) {

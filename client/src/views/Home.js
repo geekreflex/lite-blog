@@ -7,15 +7,7 @@ const Home = ({ history }) => {
 
   return (
     <div className="main-flex">
-      <section className="sec-l">
-        <h3>Left Section</h3>
-      </section>
-      <section className="sec-c">
-        <Posts posts={posts} history={history} />
-      </section>
-      <section className="sec-r">
-        <h3>Right Section</h3>
-      </section>
+      <Posts posts={posts} history={history} />
     </div>
   );
 };
