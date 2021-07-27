@@ -47,7 +47,7 @@ export const loginUser = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.post(`${url}}/login`, payload, config);
+      const { data } = await axios.post(`${url}/login`, payload, config);
       console.log(data);
 
       return data;
