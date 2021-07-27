@@ -1,16 +1,30 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../features/user/userSlice";
+import Error from "../components/Error";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
+  const onSubmitRegister = (event) => {
+    event.preventDefault();
+
+    const payload = { name, email, password };
+
+    dispatch(registerUser(payload));
+  };
+
   return (
     <main>
-      <div className="user-form">
-        <form>
-          <div className="form-control">
+      <Error />
+      <div>
+        <form onSubmit={onSubmitRegister}>
+          <div>
             <label>Full Name</label>
             <input
               placeholder="e.g. John Doe"
@@ -20,7 +34,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="form-control">
+          <div>
             <label>Email</label>
             <input
               placeholder="john@example.com"
@@ -30,7 +44,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="form-control">
+          <div>
             <label>Password</label>
             <input
               placeholder="@#ghsgshjh6"
@@ -40,10 +54,10 @@ const Register = () => {
               required
             />
           </div>
-          <div className="form-btn">
-            <button className="btn">Register</button>
+          <div>
+            <button>Register</button>
           </div>
-          <div className="form-info">
+          <div>
             <p>
               Already have an account ? <Link to="/login">Login</Link>
             </p>

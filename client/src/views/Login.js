@@ -1,15 +1,29 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Error from "../components/Error";
+import { loginUser } from "../features/user/userSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
+  const onSubmitLogin = (event) => {
+    event.preventDefault();
+
+    const payload = { email, password };
+
+    dispatch(loginUser(payload));
+  };
+
   return (
     <main>
-      <div className="user-form">
-        <form>
-          <div className="form-control">
+      <Error />
+      <div>
+        <form onSubmit={onSubmitLogin}>
+          <div>
             <label>Email</label>
             <input
               placeholder="Enter Email"
@@ -19,7 +33,7 @@ const Login = () => {
               required
             />
           </div>
-          <div className="form-control">
+          <div>
             <label>Password</label>
             <input
               placeholder="Enter Password"
@@ -29,10 +43,10 @@ const Login = () => {
               required
             />
           </div>
-          <div className="form-btn">
-            <button className="btn">Login</button>
+          <div>
+            <button>Login</button>
           </div>
-          <div className="form-info">
+          <div>
             <p>
               Don't have an account ? <Link to="/register">Register</Link>
             </p>

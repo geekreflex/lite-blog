@@ -1,37 +1,47 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { IoLibraryOutline } from "react-icons/io5";
 import Search from "./Search";
+import { logoutUser } from "../features/user/userSlice";
 
 const Header = () => {
+  const isAuth = useSelector((state) => state.user.isAuthenticated);
+  const user = useSelector((state) => state.user.user);
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <header>
       <div className="container">
         <div className="hd-wrap">
           <div className="hd-wrap-left">
-            <div className="hd-logo">
-              <Link to="/">Lite.</Link>
-            </div>
-            <div className="hd-link-icons">
-              <Link to="/">
-                <IoLibraryOutline />
-              </Link>
-            </div>
-            <div>
-              <Search />
-            </div>
+            <Link to="/" className="hd-logo">
+              <h3>Lite Blog </h3>
+            </Link>
           </div>
           <div className="hd-wrap-right">
-            <div>
-              <Link className="link-norm" to="/explore">
-                Explore
-              </Link>
-            </div>
-            <div>
-              <Link className="btn-main" to="/posts/new">
-                Create Post
-              </Link>
-            </div>
+            {isAuth ? (
+              <div className="hd-user">
+                <a href="#">
+                  <h4>{user.name}</h4>
+                </a>
+                <Link className="hd-link" to="/new">
+                  Create Post
+                </Link>
+                <button className="btn" onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

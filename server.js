@@ -4,6 +4,8 @@ const express = require("express");
 const cors = require("cors");
 
 const userRoute = require("./routes/userRoute");
+const postRoute = require("./routes/postRoute");
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const connectDB = require("./config/db");
 
 connectDB();
@@ -14,8 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/users", userRoute);
-
-// const __dirname = path.resolve();
+app.use("/api/posts", postRoute);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
@@ -28,6 +29,9 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running...");
   });
 }
+
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
