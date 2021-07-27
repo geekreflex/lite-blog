@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getPostById } from "../features/post/postSlice";
 import Loading from "../components/Loading";
+import { BASE_URL } from "../helper/baseUrl";
 
 const SinglePost = ({ match }) => {
   const { id } = match.params;
@@ -16,7 +17,7 @@ const SinglePost = ({ match }) => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/posts/${id}`)
+    fetch(`${BASE_URL()}/api/posts/${id}`)
       .then((res) => res.json())
       .then((data) => setPost(data));
   }, []);
