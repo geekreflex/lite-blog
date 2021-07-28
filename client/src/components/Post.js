@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { IoChatbubbleOutline, IoHeartOutline } from "react-icons/io5";
+import { TimeAgo } from "./TimeAgo";
 
 const Post = ({ post, history }) => {
   const showPostSingle = () => {
@@ -20,6 +21,7 @@ const Post = ({ post, history }) => {
         <div className="pc-details">
           <div className="pc-author">
             <a href="/">{post.user.name}</a>
+            <TimeAgo timestamp={post.createdAt} />
           </div>
           <div className="pc-info">
             <a className="pc-info-title" href={`/posts/${post._id}`}>

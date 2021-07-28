@@ -29,9 +29,9 @@ const Header = () => {
       <div className="container">
         <div className="hd-wrap">
           <div className="hd-wrap-left">
-            <Link to="/" className="hd-logo">
+            <a href="/" className="hd-logo">
               <h3>Lite Blog </h3>
-            </Link>
+            </a>
           </div>
           <div className="hd-wrap-right">
             {isAuth ? (

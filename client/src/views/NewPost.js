@@ -22,13 +22,11 @@ const NewPost = ({ history }) => {
   };
 
   return (
-    <div>
-      <div>
-        <h1>Create New Post</h1>
-      </div>
-      <div>
+    <div className="new-post-wrap">
+      <div>{/* <h1>Create New Post</h1> */}</div>
+      <div className="form-editor">
         <form onSubmit={newPostSubmit}>
-          <div>
+          <div className="editor-control">
             <input
               placeholder="Post Title"
               value={title}
@@ -36,7 +34,7 @@ const NewPost = ({ history }) => {
               required
             />
           </div>
-          <div>
+          <div className="editor-control">
             <input
               placeholder="Post Description"
               value={description}
@@ -44,11 +42,11 @@ const NewPost = ({ history }) => {
               required
             />
           </div>
-          <div>
+          <div className="editor-control">
             <MyEditor content={content} setContent={setContent} />
           </div>
           <div>
-            <button>Submit Post</button>
+            <button className="btn">Submit Post</button>
           </div>
         </form>
       </div>

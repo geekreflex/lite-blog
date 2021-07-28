@@ -49,7 +49,7 @@ a {
   outline: none;
   padding: 10px 20px;
   color: var(--secondary-text-color);
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   box-shadow: var(--shadow);
   font-size: 14px;
@@ -132,12 +132,15 @@ header {
 
 .pc-author {
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .pc-author a {
-  color: var(--primary-text-color);
-  font-size: 14px;
+  color: var(--secondary-text-color);
+  font-size: 16px;
   font-weight: 600;
+  margin-bottom: 5px;
 }
 
 .pc-author a:hover {
@@ -196,6 +199,7 @@ header {
   background-color: var(--secondary-dark);
   padding: 20px;
   border-radius: 5px;
+  flex-wrap: wrap;
 }
 
 .post-single h1 {
@@ -206,6 +210,12 @@ header {
 
 .post-single-info {
   margin-bottom: 30px;
+}
+
+.post-single-content {
+  color: var(--secondary-text-color);
+  padding: 0 20px;
+  line-height: 1.5;
 }
 
 .form-field {
@@ -450,4 +460,52 @@ header {
   .burger-menu {
     display: flex;
   }
+}
+
+.new-post-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-editor {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-dark);
+  padding: 20px;
+}
+.editor-control {
+  margin-bottom: 30px;
+}
+.editor-control input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 18px;
+  background-color: var(--main-dark);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: var(--primary-text-color);
+}
+
+.editor-control textarea {
+  max-height: 400px;
+}
+
+/* timestamp */
+.timestamp {
+  color: var(--primary-text-color);
+  font-size: 14px;
+}
+
+.action-btn-wrap {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.action-btn-wrap .action-btn {
+  margin-right: 30px;
+}
+
+.danger {
+  background-color: var(--text-red);
 }
