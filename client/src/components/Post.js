@@ -25,7 +25,7 @@ const Post = ({ post, history }) => {
             <a className="pc-info-title" href={`/posts/${post._id}`}>
               {post.title}
             </a>
-            <p>{post.content}</p>
+            <p>{post.description}</p>
           </div>
         </div>
         <div className="pc-actions">

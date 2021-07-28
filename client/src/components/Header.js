@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Search from "./Search";
@@ -10,9 +10,19 @@ const Header = () => {
 
   const dispatch = useDispatch();
 
+  const [visible, setVisible] = React.useState(false);
+
   const handleLogout = () => {
     dispatch(logoutUser());
   };
+
+  const toggleMenu = () => {
+    setVisible(!visible);
+  };
+
+  React.useEffect(() => {
+    console.log(visible);
+  }, [visible]);
 
   return (
     <header>
@@ -46,6 +56,38 @@ const Header = () => {
                 </Link>
               </div>
             )}
+          </div>
+
+          <div className="burger-menu" onClick={toggleMenu}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div
+              className={visible ? "hd-wrap-mobile visible" : "hd-wrap-mobile"}
+            >
+              {isAuth ? (
+                <div className="hd-user">
+                  <a href="#">
+                    <h4>{user.name}</h4>
+                  </a>
+                  <Link className="hd-link" to="/new">
+                    Create Post
+                  </Link>
+                  <button className="btn" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <Link className="hd-link" to="/login">
+                    Login
+                  </Link>
+                  <Link className="btn" to="/register">
+                    Register
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

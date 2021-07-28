@@ -8,10 +8,11 @@ const getPosts = asyncHandler(async (req, res) => {
 });
 
 const createPost = asyncHandler(async (req, res) => {
-  const { title, content } = req.body;
+  const { title, description, content } = req.body;
 
   const post = new Post({
     title,
+    description,
     content,
     user: req.user._id,
   });

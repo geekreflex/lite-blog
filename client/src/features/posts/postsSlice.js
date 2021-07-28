@@ -72,6 +72,18 @@ export const postsSlice = createSlice({
       state.status = "idle";
       state.error = action.payload;
     },
+    [createPost.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [createPost.fulfilled]: (state, action) => {
+      state.status = "idle";
+      state.posts.unshift(action.payload);
+      window.location.href = "/";
+    },
+    [createPost.rejected]: (state, action) => {
+      state.status = "idle";
+      state.error = action.payload;
+    },
   },
 });
 

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { getPostById } from "../features/post/postSlice";
 import Loading from "../components/Loading";
 import { BASE_URL } from "../helper/baseUrl";
+import ReactMarkdown from "react-markdown";
 
 const SinglePost = ({ match }) => {
   const { id } = match.params;
@@ -35,7 +36,7 @@ const SinglePost = ({ match }) => {
             <a href="#">{post.user.name}</a>
           </div>
           <div className="post-single-content">
-            <p>{post.content}</p>
+            <ReactMarkdown children={post.content} />
           </div>
         </div>
       </div>
