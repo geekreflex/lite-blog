@@ -4,10 +4,13 @@ import token from "../helper/authToken";
 import axios from "axios";
 
 import CommentExcerpt from "./CommentExcerpt";
+import { useSelector } from "react-redux";
 
 const Comment = ({ postId }) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState(null);
+
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   useEffect(() => {
     getComments();
@@ -52,19 +55,26 @@ const Comment = ({ postId }) => {
       </div>
 
       <div className="comment-wrap">
-        <form onSubmit={handleSubmitComment}>
-          <div>
-            <textarea
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              placeholder="Add comment"
-              required
-            />
+        {isAuthenticated ? (
+          <form onSubmit={handleSubmitComment}>
+            <div>
+              <textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Add comment"
+                required
+              />
+            </div>
+            <div>
+              <button className="btn">Submit</button>
+            </div>
+          </form>
+        ) : (
+          <div className="login-to-comment">
+            <h3>Login to comment</h3>
+            <a href={`/login?redirect=${window.location.href}`}>Login</a>
           </div>
-          <div>
-            <button className="btn">Submit</button>
-          </div>
-        </form>
+        )}
 
         <div className="comment-list">
           {comments ? (

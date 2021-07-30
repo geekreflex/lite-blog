@@ -103,7 +103,11 @@ export const userSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload;
       localStorage.setItem("userInfo", JSON.stringify(action.payload));
-      window.location.href = "/";
+      if (window.location.search.startsWith("?redirect")) {
+        window.location.href = document.referrer;
+      } else {
+        window.location.href = "/";
+      }
     },
     [loginUser.rejected]: (state, action) => {
       state.status = "idle";

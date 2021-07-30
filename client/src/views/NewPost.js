@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createPost } from "../features/posts/postsSlice";
 import MyEditor from "../components/MyEditor";
 
-const NewPost = ({ history }) => {
+const NewPost = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");

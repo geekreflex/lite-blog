@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { IoChatbubbleOutline, IoHeartOutline } from "react-icons/io5";
+import { IoChatbubbleOutline } from "react-icons/io5";
 import { TimeAgo } from "./TimeAgo";
 
 const Post = ({ post, history }) => {
@@ -32,10 +32,6 @@ const Post = ({ post, history }) => {
         </div>
         <div className="pc-actions">
           <div className="pc-actions-l">
-            {/* <div className="pc-a-ic">
-              <IoHeartOutline />
-              <span>288</span>
-            </div> */}
             <div className="pc-a-ic">
               <IoChatbubbleOutline />
               <span>{post.comments?.length}</span>
