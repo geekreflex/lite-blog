@@ -1,26 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useDispatch } from "react-redux";
-import { createPost } from "../features/posts/postsSlice";
+import { updatePost } from "../features/posts/postsSlice";
 import MyEditor from "../components/MyEditor";
+import { BASE_URL } from "../helper/baseUrl";
+import Loading from "../components/Loading";
 
-const NewPost = () => {
+const NewPost = ({ match }) => {
+  const id = match.params.id;
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setLoading(true);
+    getPost();
+  }, []);
+
+  const getPost = async () => {
+    try {
+      const { data } = await axios.get(`${BASE_URL()}/api/posts/${id}`);
+      console.log(data);
+      setLoading(false);
+      setTitle(data.title);
+      setDescription(data.description);
+      setContent(data.content);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const newPostSubmit = (event) => {
     event.preventDefault();
     const payload = {
-      title,
-      description,
-      content,
+      data: { title, description, content },
+      postId: id,
     };
 
-    dispatch(createPost(payload));
+    dispatch(updatePost(payload));
   };
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="new-post-wrap">
       <div>{/* <h1>Create New Post</h1> */}</div>
@@ -46,7 +72,7 @@ const NewPost = () => {
             <MyEditor content={content} setContent={setContent} />
           </div>
           <div>
-            <button className="btn">Submit Post</button>
+            <button className="btn">Update Post</button>
           </div>
         </form>
       </div>

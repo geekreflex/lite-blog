@@ -1,10 +1,17 @@
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
+const { validationResult } = require("express-validator");
 
 const generateToken = require("../utils/generateToken");
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const firstError = errors.array().map((error) => error.msg)[0];
+    return res.status(422).json({ message: firstError });
+  }
 
   const userExists = await User.findOne({ email });
 

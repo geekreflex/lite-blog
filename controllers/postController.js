@@ -47,6 +47,25 @@ const getPostById = asyncHandler(async (req, res) => {
   }
 });
 
+const updatePost = asyncHandler(async (req, res) => {
+  const { title, description, content } = req.body;
+
+  const post = await Post.findById(req.params.id);
+
+  if (post) {
+    post.title = title;
+    post.description = description;
+    post.content = content;
+    post.user = req.user._id;
+
+    const updatedPost = await post.save();
+    res.json(updatedPost);
+  } else {
+    res.status(404);
+    throw new Error("Post not found");
+  }
+});
+
 const deletePost = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
@@ -66,5 +85,6 @@ module.exports = {
   getPosts,
   getUserPost,
   getPostById,
+  updatePost,
   deletePost,
 };

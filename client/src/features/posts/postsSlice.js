@@ -9,6 +9,7 @@ const initialState = {
   post: {},
   status: "idle",
   error: null,
+  message: null,
 };
 
 const url = `${BASE_URL()}/api/posts`;
@@ -56,6 +57,55 @@ export const createPost = createAsyncThunk(
   }
 );
 
+export const updatePost = createAsyncThunk(
+  "posts/updatePost",
+  async (payload, thunkAPI) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const { data } = await axios.put(
+        `${url}/${payload.postId}`,
+        payload.data,
+        config
+      );
+      return data;
+    } catch (error) {
+      // console.log(error.response);
+      return thunkAPI.rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  "posts/updatePost",
+  async (payload, thunkAPI) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      await axios.delete(`${url}/${payload}`, config);
+    } catch (error) {
+      // console.log(error.response);
+      return thunkAPI.rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
+    }
+  }
+);
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -81,6 +131,30 @@ export const postsSlice = createSlice({
       window.location.href = "/";
     },
     [createPost.rejected]: (state, action) => {
+      state.status = "idle";
+      state.error = action.payload;
+    },
+    [updatePost.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [updatePost.fulfilled]: (state, action) => {
+      state.status = "idle";
+      state.message = "updated";
+      window.location.href = document.referrer;
+    },
+    [updatePost.rejected]: (state, action) => {
+      state.status = "idle";
+      state.error = action.payload;
+    },
+    [deletePost.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [deletePost.fulfilled]: (state, action) => {
+      state.status = "idle";
+      state.message = "deleted";
+      window.location.href = "/";
+    },
+    [deletePost.rejected]: (state, action) => {
       state.status = "idle";
       state.error = action.payload;
     },

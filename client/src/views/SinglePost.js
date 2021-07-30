@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import { TimeAgo } from "../components/TimeAgo";
 import ActionButton from "../components/ActionButton";
 import Comment from "../components/Comment";
+import DeleteModal from "../components/DeleteModal";
 
 const SinglePost = ({ match }) => {
   const { id } = match.params;
@@ -33,6 +34,7 @@ const SinglePost = ({ match }) => {
   } else {
     content = (
       <div className="post-single-wrap">
+        <DeleteModal postId={post._id} />
         <div className="post-single">
           <h1>{post.title}</h1>
 
@@ -40,7 +42,13 @@ const SinglePost = ({ match }) => {
             <a href="#">{post.user.name}</a>
             <TimeAgo timestamp={post.createdAt} />
           </div>
-          <div>{post.user._id === user._id ? <ActionButton /> : ""}</div>
+          <div className="post-action-btn">
+            {post.user._id === user._id ? (
+              <ActionButton postId={post._id} />
+            ) : (
+              ""
+            )}
+          </div>
           <div className="post-single-content">
             <ReactMarkdown children={post.content} />
           </div>
