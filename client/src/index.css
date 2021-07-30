@@ -490,6 +490,12 @@ header {
   .form-hd p {
     font-size: 16px;
   }
+  .comment-hd h1 {
+    font-size: 25px;
+  }
+  .comment-hd span {
+    font-size: 18px;
+  }
 }
 
 @media only screen and (max-width: 380px) {
@@ -609,6 +615,7 @@ header {
   border-radius: 5px;
   resize: vertical;
   outline: none;
+  color: var(--primary-text-color);
 }
 
 .comment-wrap form textarea:focus {
