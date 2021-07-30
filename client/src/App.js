@@ -13,6 +13,7 @@ import NewPost from "./views/NewPost";
 import SinglePost from "./views/SinglePost";
 import Profile from "./views/Profile";
 import { PublicRoute, ProtectedRoute } from "./helper/authRoute";
+import "./normalize.css";
 
 const App = () => {
   return (
@@ -26,7 +27,7 @@ const App = () => {
             <PublicRoute exact path="/register" component={Register} />
             <Route exact path="/new" component={NewPost} />
             <Route exact path="/posts/:id" component={SinglePost} />
-            <Route exact path="/profile" component={Profile} />
+            <ProtectedRoute exact path="/profile" component={Profile} />
           </Switch>
         </div>
       </div>

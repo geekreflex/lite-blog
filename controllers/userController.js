@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 
 const generateToken = require("../utils/generateToken");
 
-const registerUser = async (req, res) => {
+const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
   const userExists = await User.findOne({ email });
@@ -26,13 +26,12 @@ const registerUser = async (req, res) => {
   } else {
     res.status(400).json({ message: "Invalid user data" });
   }
-};
+});
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-  console.log(user);
 
   if (user && (await user.matchPassword(password))) {
     res.json({

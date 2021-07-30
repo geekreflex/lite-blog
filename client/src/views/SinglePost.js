@@ -6,6 +6,7 @@ import { BASE_URL } from "../helper/baseUrl";
 import ReactMarkdown from "react-markdown";
 import { TimeAgo } from "../components/TimeAgo";
 import ActionButton from "../components/ActionButton";
+import Comment from "../components/Comment";
 
 const SinglePost = ({ match }) => {
   const { id } = match.params;
@@ -44,6 +45,7 @@ const SinglePost = ({ match }) => {
             <ReactMarkdown children={post.content} />
           </div>
         </div>
+        <Comment postId={post._id} />
       </div>
     );
   }

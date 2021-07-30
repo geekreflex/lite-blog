@@ -24,7 +24,7 @@ const createPost = asyncHandler(async (req, res) => {
 const getUserPost = asyncHandler(async (req, res) => {
   const { _id } = req.user;
 
-  const post = await Post.find({ user: _id });
+  const post = await Post.find({ user: _id }).populate("comments");
 
   if (post) {
     return res.status(200).json(post);
@@ -61,4 +61,10 @@ const deletePost = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { createPost, getPosts, getUserPost, getPostById, deletePost };
+module.exports = {
+  createPost,
+  getPosts,
+  getUserPost,
+  getPostById,
+  deletePost,
+};

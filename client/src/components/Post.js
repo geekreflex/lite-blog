@@ -32,13 +32,13 @@ const Post = ({ post, history }) => {
         </div>
         <div className="pc-actions">
           <div className="pc-actions-l">
-            <div className="pc-a-ic">
+            {/* <div className="pc-a-ic">
               <IoHeartOutline />
               <span>288</span>
-            </div>
+            </div> */}
             <div className="pc-a-ic">
               <IoChatbubbleOutline />
-              <span>311</span>
+              <span>{post.comments?.length}</span>
             </div>
           </div>
           <div className="pc-actions-r"></div>
