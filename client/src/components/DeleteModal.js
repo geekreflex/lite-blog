@@ -10,7 +10,8 @@ const DeleteModal = ({ postId }) => {
     dispatch(deletePost(postId));
   };
 
-  const cancelDelete = () => {
+  const cancelDelete = (event) => {
+    event.stopPropagation();
     dispatch(toggleDeleteModal());
   };
 
