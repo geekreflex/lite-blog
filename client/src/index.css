@@ -429,6 +429,7 @@ header {
   max-height: 200px;
   top: 48px;
   right: 0;
+  box-shadow: var(--shadow);
   background-color: var(--secondary-dark);
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
@@ -629,6 +630,7 @@ header {
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
+  border: 1px solid var(--border-color);
 }
 
 .com-exp-info {
