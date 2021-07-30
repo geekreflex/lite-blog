@@ -17,7 +17,10 @@ const DeleteModal = ({ postId }) => {
   const { value } = useSelector((state) => state.modal);
 
   return (
-    <div className={value ? "delete-modal" : "delete-modal del-hidden"}>
+    <div
+      className={value ? "delete-modal" : "delete-modal del-hidden"}
+      onClick={cancelDelete}
+    >
       <div className="del-wrap">
         <p>Are you sure?</p>
         <div className="del-action-btn">

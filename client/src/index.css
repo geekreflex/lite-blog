@@ -674,7 +674,7 @@ p {
 }
 
 .delete-modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
@@ -699,10 +699,6 @@ p {
 .del-action-btn {
   display: flex;
   justify-content: space-between;
-}
-
-.del-action-btn button {
-  /* margin-right: 20px; */
 }
 
 .del-hidden {
