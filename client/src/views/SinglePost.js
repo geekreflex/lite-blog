@@ -31,7 +31,10 @@ const SinglePost = ({ match }) => {
 
   if (!post.user) {
     content = <Loading />;
+    document.title = "Loading";
   } else {
+    document.title = post.title;
+
     content = (
       <div className="post-single-wrap">
         <DeleteModal postId={post._id} />
