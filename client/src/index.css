@@ -5,6 +5,10 @@
   /* border: 1px solid red; */
 }
 
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
 :root {
   --main-dark: #181818;
   --secondary-dark: #262626;
