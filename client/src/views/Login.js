@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Error from "../components/Error";
 import { loginUser } from "../features/user/userSlice";
@@ -9,6 +9,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.title = "Login";
+  });
 
   const onSubmitLogin = (event) => {
     event.preventDefault();

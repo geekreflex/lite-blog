@@ -17,6 +17,7 @@ const NewPost = ({ match }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    document.title = `Loading`;
     setLoading(true);
     getPost();
   }, []);
@@ -29,6 +30,7 @@ const NewPost = ({ match }) => {
       setTitle(data.title);
       setDescription(data.description);
       setContent(data.content);
+      document.title = `Edit | ${data.title}`;
     } catch (error) {
       console.error(error);
     }

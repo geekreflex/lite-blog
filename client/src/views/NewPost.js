@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createPost } from "../features/posts/postsSlice";
 import MyEditor from "../components/MyEditor";
@@ -9,6 +9,10 @@ const NewPost = () => {
   const [content, setContent] = useState("");
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.title = "Create New Post";
+  });
 
   const newPostSubmit = (event) => {
     event.preventDefault();
