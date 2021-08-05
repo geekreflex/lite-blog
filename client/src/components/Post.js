@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { TimeAgo } from "./TimeAgo";
+import { Link } from "react-router-dom";
 
 const Post = ({ post, history }) => {
   const showPostSingle = () => {
@@ -20,13 +21,13 @@ const Post = ({ post, history }) => {
       <div key={post._id}>
         <div className="pc-details">
           <div className="pc-author">
-            <a href="/">{post.user.name}</a>
+            <Link href="/">{post.user.name}</Link>
             <TimeAgo timestamp={post.createdAt} />
           </div>
           <div className="pc-info">
-            <a className="pc-info-title" href={`/posts/${post._id}`}>
+            <Link className="pc-info-title" href={`/posts/${post._id}`}>
               {post.title}
-            </a>
+            </Link>
             <p>{post.description}</p>
           </div>
         </div>
